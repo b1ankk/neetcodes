@@ -1,0 +1,28 @@
+class Solution {
+    minKnightMoves(x, y) {
+        x = Math.abs(x);
+        y = Math.abs(y);
+
+        if (x < y) {
+            [x, y] = [y, x];
+        }
+
+        if (x === 1 && y === 0) {
+            return 3;
+        }
+
+        if (x === 2 && y === 2) {
+            return 4;
+        }
+
+        let moves = Math.max(
+            Math.ceil(x / 2),
+            Math.ceil((x + y) / 3)
+        );
+
+        // Fix parity
+        moves += (moves + x + y) % 2;
+
+        return moves;
+    }
+}
